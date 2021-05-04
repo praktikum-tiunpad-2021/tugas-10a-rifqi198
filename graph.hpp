@@ -130,28 +130,7 @@ class graph {
   void bfs(const VertexType &root,
            std::function<void(const VertexType &)> func) const {
     // TODO: Implementasikan!
-    std::unordered_map<VertexType, bool> visited;
-    for(auto &it : _adj_list){
-      visited.insert(std::make_pair(it.first, false));
-    }
-    std::queue<VertexType> q;
-    VertexType temp = root;
-    q.push(temp);
-    visited[temp] = true;
     
-    while(!q.empty()){
-      temp = q.front();
-      func(temp);
-      q.pop();
-
-      for(auto i = _adj_list[temp].begin(); i != _adj_list[temp].end(); ++i){
-        if(!visited[*i]){
-          visited[*i] = true;
-          q.push(*i);
-        }
-      }
-    }
-
   }
 
   /**
@@ -163,27 +142,7 @@ class graph {
   void dfs(const VertexType &root,
            std::function<void(const VertexType &)> func) const {
     // TODO: Implementasikan!
-    std::unordered_map<VertexType, bool> visited;
-    for (auto &it : _adj_list) {
-      visited.insert(std::make_pair(it.first, false));
-    }
-    std::stack<VertexType> s;
-    s.push(root);
-    while (!s.empty()) {
-      VertexType curr = s.top();
-      s.pop();
-
-      if (!visited[curr]) {
-        func(curr);
-        visited[curr] = true;
-      }
-
-      for (auto &it : _adj_list.at(curr)) {
-        if (!visited[it]) {
-          s.push(it);
-        }
-      }
-    }
+    
   }
 
  private:
